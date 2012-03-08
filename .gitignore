@@ -13,5 +13,4 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-vendor/ruby
 bundler_stubs/
