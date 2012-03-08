@@ -14,3 +14,10 @@
 /log/*.log
 /tmp
 bundler_stubs/
+
+# Ignore other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
