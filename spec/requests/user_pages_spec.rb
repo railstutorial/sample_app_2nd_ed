@@ -200,7 +200,6 @@ describe "User pages" do
     end
 
     describe "with valid information" do
-      let(:user)      { FactoryGirl.create(:user) }
       let(:new_name)  { "New Name" }
       let(:new_email) { "new@example.com" }
       before do
