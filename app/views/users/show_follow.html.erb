@@ -1,3 +1,4 @@
+<%= provide(:title, @title) %>
 <div class="row">
   <aside class="span4">
     <section>
@@ -18,7 +19,7 @@
     </section>
   </aside>
   <div class="span8">
-    <h3><%= yield(:title) %></h3>
+    <h3><%= @title %></h3>
     <% if @users.any? %>
       <ul class="users">
         <%= render @users %>
