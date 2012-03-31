@@ -23,7 +23,7 @@ describe "User pages" do
       let(:second_page) { User.paginate(page: 2) }
 
       it { should have_link('Next') }
-      it { should have_link('2') }
+      its(:html) { should match('>2</a>') }
 
       it "should list each user" do
         User.all[0..2].each do |user|
