@@ -70,6 +70,7 @@ describe "Authentication" do
 
           describe "when signing in again" do
             before do
+              visit signout_path
               visit signin_path
               fill_in "Email",    with: user.email
               fill_in "Password", with: user.password
