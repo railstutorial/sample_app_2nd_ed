@@ -12,6 +12,7 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb')
   watch('test/test_helper.rb')
+  watch('spec/support/')
 end
 
 guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
@@ -35,7 +36,10 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
     ["spec/routing/#{m[1]}_routing_spec.rb",
      "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb",
      "spec/acceptance/#{m[1]}_spec.rb",
-     "spec/requests/#{m[1].singularize}_pages_spec.rb"]
+     "spec/requests/#{m[1].singularize}_pages_spec.rb",
+     (m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" : 
+                       "spec/requests/#{m[1].singularize}_pages_spec.rb")
+   ]
   end
   watch(%r{^app/views/(.+)/}) do |m|
     "spec/requests/#{m[1].singularize}_pages_spec.rb"
