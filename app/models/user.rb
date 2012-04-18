@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
 
-  before_validation { |user| user.email = email.downcase }
+  before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
   validates :name,  presence: true, length: { maximum: 50 }
