@@ -93,9 +93,9 @@ describe User do
     let(:email) { "Foo@ExAMPle.CoM" }
 
     it "should be saved as all lower-case" do
-        @user.email = email
-        @user.save
-        @user.reload.email.should == email.downcase
+      @user.email = email
+      @user.save
+      @user.reload.email.should == email.downcase
     end
   end
 
