@@ -89,6 +89,16 @@ describe User do
     it { should_not be_valid }
   end
 
+  describe "email address" do
+    let(:email) { "Foo@ExAMPle.CoM" }
+
+    it "should be saved as all lower-case" do
+        @user.email = email
+        @user.save
+        @user.reload.email.should == email.downcase
+    end
+  end
+
   describe "when password is not present" do
     before { @user.password = @user.password_confirmation = " " }
     it { should_not be_valid }
