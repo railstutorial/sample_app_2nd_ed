@@ -30,7 +30,7 @@ group :test do
   gem 'guard-spork', '0.3.2'  
   gem 'spork', '0.9.0'
   gem 'launchy', '2.1.0'
-  # gem 'rb-fsevent', '0.4.3.1', require: false
+  # gem 'rb-fsevent', '0.9.1', require => false
   # gem 'growl', '1.0.3'
 end
 
