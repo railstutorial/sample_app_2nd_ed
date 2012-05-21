@@ -9,7 +9,7 @@
     </section>
     <section>
       <%= render 'shared/stats' %>
-      <% unless @users.empty? %>
+      <% if @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>
             <%= link_to gravatar_for(user, size: 30), user %>
@@ -24,7 +24,7 @@
       <ul class="users">
         <%= render @users %>
       </ul>
-      <%= will_paginate @users %>
+      <%= will_paginate %>
     <% end %>
   </div>
 </div>

@@ -4,9 +4,7 @@ describe Relationship do
 
   let(:follower) { FactoryGirl.create(:user) }
   let(:followed) { FactoryGirl.create(:user) }
-  let(:relationship) do
-    follower.relationships.build(followed_id: followed.id)
-  end
+  let(:relationship) { follower.relationships.build(followed_id: followed.id) }
 
   subject { relationship }
 
@@ -21,8 +19,6 @@ describe Relationship do
   end
 
   describe "follower methods" do
-    before { relationship.save }
-
     it { should respond_to(:follower) }
     it { should respond_to(:followed) }
     its(:follower) { should == follower }
