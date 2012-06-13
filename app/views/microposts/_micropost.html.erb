@@ -4,8 +4,8 @@
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
   </span>
   <% if current_user?(micropost.user) %>
-    <%= link_to "delete", micropost, method:  :delete,
-                                     confirm: "You sure?",
-                                     title:   micropost.content %>
+    <%= link_to "delete", micropost, method: :delete,
+                                     data: { confirm: 'You sure?' },
+                                     title: micropost.content %>
   <% end %>
 </li>
