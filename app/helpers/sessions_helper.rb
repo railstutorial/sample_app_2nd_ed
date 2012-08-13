@@ -24,7 +24,7 @@ module SessionsHelper
   def signed_in_user
     unless signed_in?
       store_location
-      redirect_to signin_path, notice: "Please sign in."
+      redirect_to signin_url, notice: "Please sign in."
     end
   end
 
@@ -39,6 +39,6 @@ module SessionsHelper
   end
 
   def store_location
-    session[:return_to] = request.fullpath
+    session[:return_to] = request.url
   end
 end
