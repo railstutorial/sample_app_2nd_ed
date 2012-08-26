@@ -31,7 +31,7 @@ GEM
     addressable (2.2.8)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.0.0)
+    bootstrap-sass (2.0.4.0)
     bootstrap-will_paginate (0.0.6)
       will_paginate
     builder (3.0.0)
@@ -151,8 +151,8 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.10.0)
     rubyzip (0.9.8)
-    sass (3.1.19)
-    sass-rails (3.2.4)
+    sass (3.2.1)
+    sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
@@ -186,7 +186,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
-  bootstrap-sass (= 2.0.0)
+  bootstrap-sass (= 2.0.4)
   bootstrap-will_paginate (= 0.0.6)
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
@@ -201,7 +201,7 @@ DEPENDENCIES
   pg (= 0.12.2)
   rails (= 3.2.8)
   rspec-rails (= 2.10.0)
-  sass-rails (= 3.2.4)
+  sass-rails (= 3.2.5)
   spork (= 0.9.0)
   sqlite3 (= 1.3.5)
   uglifier (= 1.2.3)
