@@ -18,7 +18,7 @@ describe Micropost do
     it "should not allow access to user_id" do
       expect do
         Micropost.new(user_id: user.id)
-      end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
+      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end    
   end
 
