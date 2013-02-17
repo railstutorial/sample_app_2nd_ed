@@ -199,9 +199,8 @@ input {
 }
 
 .field_with_errors {
-  @extend .control-group;
-  @extend .error;
- }
+  @extend .control-group.error;
+}
 
  /* users index */
 
