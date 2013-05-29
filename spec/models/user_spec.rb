@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
 
   before do
-    @user = User.new(name: "Example User", email: "user@example.com", 
+    @user = User.new(name: "Example User", email: "user@example.com",
                      password: "foobar", password_confirmation: "foobar")
   end
 
@@ -35,7 +35,7 @@ describe User do
       expect do
         User.new(admin: true)
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end    
+    end
   end
 
   describe "with admin attribute set to 'true'" do
@@ -46,7 +46,7 @@ describe User do
 
     it { should be_admin }
   end
-  
+
   describe "when name is not present" do
     before { @user.name = " " }
     it { should_not be_valid }
@@ -68,7 +68,7 @@ describe User do
       addresses.each do |invalid_address|
         @user.email = invalid_address
         @user.should_not be_valid
-      end      
+      end
     end
   end
 
@@ -78,7 +78,7 @@ describe User do
       addresses.each do |valid_address|
         @user.email = valid_address
         @user.should be_valid
-      end      
+      end
     end
   end
 
@@ -147,7 +147,7 @@ describe User do
   describe "micropost associations" do
 
     before { @user.save }
-    let!(:older_micropost) do 
+    let!(:older_micropost) do
       FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
     end
     let!(:newer_micropost) do
@@ -157,7 +157,7 @@ describe User do
     it "should have the right microposts in the right order" do
       @user.microposts.should == [newer_micropost, older_micropost]
     end
-  
+
     it "should destroy associated microposts" do
       microposts = @user.microposts.dup
       @user.destroy
@@ -166,7 +166,7 @@ describe User do
         Micropost.find_by_id(micropost.id).should be_nil
       end
     end
-  
+
     describe "status" do
       let(:unfollowed_post) do
         FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
@@ -191,7 +191,7 @@ describe User do
   end
 
   describe "following" do
-    let(:other_user) { FactoryGirl.create(:user) }    
+    let(:other_user) { FactoryGirl.create(:user) }
     before do
       @user.save
       @user.follow!(other_user)
