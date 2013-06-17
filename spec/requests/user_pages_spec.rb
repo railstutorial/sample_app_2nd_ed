@@ -5,7 +5,7 @@ describe "User pages" do
   subject { page }
 
   describe "index" do
-    
+
     before do
       sign_in FactoryGirl.create(:user)
       FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
@@ -16,7 +16,7 @@ describe "User pages" do
     it { should have_selector('title', text: 'All users') }
 
     describe "pagination" do
-      
+
       before(:all) { 30.times { FactoryGirl.create(:user) } }
       after(:all)  { User.delete_all }
 
@@ -52,7 +52,7 @@ describe "User pages" do
             page.should have_selector('li', text: user.name)
           end
         end
-      end 
+      end
     end
 
     describe "delete links" do
@@ -90,9 +90,6 @@ describe "User pages" do
       it { should have_content(m2.content) }
       it { should have_content(user.microposts.count) }
     end
-
-    it { should have_selector('h1',    text: user.name) }
-    it { should have_selector('title', text: user.name) }
 
     describe "follow/unfollow buttons" do
       let(:other_user) { FactoryGirl.create(:user) }
@@ -162,7 +159,7 @@ describe "User pages" do
       it "should not create a user" do
         expect { click_button submit }.not_to change(User, :count)
       end
-      
+
       describe "error messages" do
         before { click_button submit }
 
@@ -185,7 +182,7 @@ describe "User pages" do
 
       describe "after saving the user" do
         before { click_button submit }
-        
+
         let(:user) { User.find_by_email('user@example.com') }
 
         it { should have_selector('title', text: user.name) }
@@ -194,7 +191,7 @@ describe "User pages" do
       end
     end
   end
-  
+
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
     before do
