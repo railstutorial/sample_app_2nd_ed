@@ -19,7 +19,7 @@ describe Micropost do
       expect do
         Micropost.new(user_id: user.id)
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end    
+    end
   end
 
   describe "when user_id is not present" do

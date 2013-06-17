@@ -25,7 +25,7 @@ describe "Authentication" do
         it { should_not have_selector('div.alert.alert-error') }
       end
     end
-    
+
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
       before do
@@ -78,7 +78,7 @@ describe "Authentication" do
             end
 
             it "should render the default (profile) page" do
-              page.should have_selector('title', text: user.name) 
+              page.should have_selector('title', text: user.name)
             end
           end
         end
@@ -133,7 +133,7 @@ describe "Authentication" do
 
         describe "submitting to the destroy action" do
           before { delete relationship_path(1) }
-          specify { response.should redirect_to(signin_url) }          
+          specify { response.should redirect_to(signin_url) }
         end
       end
     end
@@ -162,7 +162,7 @@ describe "Authentication" do
 
       describe "submitting a DELETE request to the Users#destroy action" do
         before { delete user_path(user) }
-        specify { response.should redirect_to(root_url) }        
+        specify { response.should redirect_to(root_url) }
       end
     end
   end

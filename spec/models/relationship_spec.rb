@@ -15,7 +15,7 @@ describe Relationship do
       expect do
         Relationship.new(follower_id: follower.id)
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end    
+    end
   end
 
   describe "follower methods" do
