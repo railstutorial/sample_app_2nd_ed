@@ -16,6 +16,7 @@
 bundler_stubs/
 
 # Ignore other unneeded files.
+database.yml
 doc/
 *.swp
 *~
