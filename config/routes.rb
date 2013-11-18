@@ -1,4 +1,6 @@
 SampleApp::Application.routes.draw do
+  resources :toopher_terminals
+
   resources :users do
     member do
       get :following, :followers

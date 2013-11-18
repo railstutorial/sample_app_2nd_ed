@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   attr_accessible :toopher_pairing_id
+  has_many :toopher_terminals, dependent: :destroy
 
   has_secure_password
   has_many :microposts, dependent: :destroy

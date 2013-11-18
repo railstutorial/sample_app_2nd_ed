@@ -1,0 +1,25 @@
+<h1>Listing toopher_terminals</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Cookie value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @toopher_terminals.each do |toopher_terminal| %>
+  <tr>
+    <td><%= toopher_terminal.name %></td>
+    <td><%= toopher_terminal.cookie_value %></td>
+    <td><%= link_to 'Show', toopher_terminal %></td>
+    <td><%= link_to 'Edit', edit_toopher_terminal_path(toopher_terminal) %></td>
+    <td><%= link_to 'Destroy', toopher_terminal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Toopher terminal', new_toopher_terminal_path %>

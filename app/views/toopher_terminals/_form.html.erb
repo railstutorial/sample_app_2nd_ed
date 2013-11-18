@@ -1,0 +1,25 @@
+<%= form_for(@toopher_terminal) do |f| %>
+  <% if @toopher_terminal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@toopher_terminal.errors.count, "error") %> prohibited this toopher_terminal from being saved:</h2>
+
+      <ul>
+      <% @toopher_terminal.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :cookie_value %><br />
+    <%= f.text_field :cookie_value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
