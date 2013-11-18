@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :toopher_pairing_id
+  has_many :toopher_terminals, dependent: :destroy
+
   has_secure_password
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -34,6 +37,10 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by_followed_id(other_user.id).destroy
+  end
+
+  def toopher_enabled?
+    !toopher_pairing_id.blank?
   end
 
   private

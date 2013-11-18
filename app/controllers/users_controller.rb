@@ -61,7 +61,78 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def toopher_create_pairing
+    @user = User.find(params[:user_id])
+    pairing_phrase = params[:pairing_phrase]
+    toopher = ToopherAPI.new(ENV['TOOPHER_CONSUMER_KEY'], ENV['TOOPHER_CONSUMER_SECRET']) rescue nil
+
+    if not session[:toopher_pairing_start]
+      begin
+        pairing = toopher.pair(pairing_phrase, @user.email)
+      rescue
+        return toopher_bad_pairing_phrase
+      end
+      session[:toopher_pairing_start] = Time.now
+      session[:toopher_pairing_id] = pairing.id
+    else
+      pairing = toopher.get_pairing_status(session[:toopher_pairing_id])
+    end
+
+    if Time.now - session[:toopher_pairing_start] > 60
+      return pairing_timeout
+    end
+
+    if pairing and pairing.enabled
+      if @user.update_attribute(:toopher_pairing_id, session[:toopher_pairing_id])
+        sign_in @user
+        return toopher_pairing_enabled
+      end
+    end
+
+    render :json => {:pairing_id => session[:toopher_pairing_id]}
+  end
+
+  def toopher_delete_pairing
+    @user = User.find(params[:user_id])
+    p "user = #{@user.inspect} | current_user = #{current_user.inspect}"
+    if @user.update_attribute(:toopher_pairing_id, "")
+      sign_in @user
+      return toopher_pairing_disabled
+    else
+      render 'edit'
+    end
+  end
+
   private
+
+    def toopher_pairing_disabled
+      clear_toopher_session_data
+      flash[:success] = "Toopher removed from this account."
+      redirect_to edit_user_path(@user)
+    end
+
+    def toopher_pairing_enabled
+      clear_toopher_session_data
+      flash[:success] = "Toopher now active for this account."
+      render :json => {:redirect => edit_user_path(@user)}
+    end
+
+    def pairing_timeout
+      clear_toopher_session_data
+      flash[:failure] = "Pairing timed out. Please try again."
+      render :json => {:redirect => edit_user_path(@user)}
+    end
+
+    def toopher_bad_pairing_phrase
+      clear_toopher_session_data
+      flash[:failure] = "Incorrect pairing phrase. Please ensure you typed the pairing phrase correctly."
+      render :json => {:redirect => edit_user_path(@user)}
+    end
+
+    def clear_toopher_session_data
+      session.delete(:toopher_pairing_start)
+      session.delete(:toopher_pairing_id)
+    end
 
     def correct_user
       @user = User.find(params[:id])
