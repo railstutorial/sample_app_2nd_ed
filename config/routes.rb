@@ -3,6 +3,9 @@ SampleApp::Application.routes.draw do
     member do
       get :following, :followers
     end
+
+    post :toopher_create_pairing
+    post :toopher_delete_pairing
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]

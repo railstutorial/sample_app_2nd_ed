@@ -1,0 +1,20 @@
+<h3>Toopher</h3>
+
+<% if current_user and current_user.toopher_enabled? %>
+  <p>
+  Thanks for setting up Toopher.
+  </p>
+  <form action="toopher_delete_pairing" method="post" id="unpair">
+    <%= token_tag(nil) %>
+    <input class="btn btn-large btn-primary" type="submit" value="Remove Toopher">
+  </form>
+<% else %>
+  <p>
+  Set up Toopher by generating a pairing phrase on your mobile device and inputting the phrase below.
+  </p>
+  <form action="toopher_create_pairing" method="post" id="pair">
+    <%= token_tag(nil) %>
+    <input type="text" name="pairing_phrase" id="pairing_phrase" placeholder="Pairing phrase" />
+    <input class="btn btn-large btn-primary" type="submit" value="Pair with Toopher">
+  </form>
+<% end %>
