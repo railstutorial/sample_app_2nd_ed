@@ -22,3 +22,4 @@ doc/
 *~
 .project
 .DS_Store
+venv
